@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation with Back Button</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        button, a {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+        }
+        a {
+            background-color: #007BFF;
+        }
+        button:hover, a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Home Page</h1>
+
+    <p>Click on a link to go to another page, then use the back button to return to the home page.</p>
+
+    <!-- Links to simulate navigation to other pages -->
+    <a href="javascript:void(0)" onclick="navigateToPage('page1')">Go to Page 1</a>
+    <a href="javascript:void(0)" onclick="navigateToPage('page2')">Go to Page 2</a>
+    <a href="javascript:void(0)" onclick="navigateToPage('page3')">Go to Page 3</a>
+
+    <br><br>
+
+    <!-- Back Button -->
+    <button onclick="goBack()">⬅️ Go Back to Home</button>
+
+    <script>
+        let pageHistory = ['home'];  // Initial page is the home page
+
+        // Function to simulate page navigation
+        function navigateToPage(page) {
+            // Simulating navigating to another page
+            pageHistory.push(page);
+            alert('Navigating to ' + page);
+            document.body.innerHTML = '<h1>' + page.charAt(0).toUpperCase() + page.slice(1) + ' Page</h1>' +
+                '<button onclick="goBack()">⬅️ Go Back to Home</button>';
+        }
+
+        // Function to go back to the home page
+        function goBack() {
+            // Remove the last page from history (go back to the home page)
+            if (pageHistory.length > 1) {
+                pageHistory.pop(); // Remove last page
+                document.body.innerHTML = '<h1>Home Page</h1>' +
+                    '<p>Click on a link to go to another page, then use the back button to return to the home page.</p>' +
+                    '<a href="javascript:void(0)" onclick="navigateToPage(\'page1\')">Go to Page 1</a>' +
+                    '<a href="javascript:void(0)" onclick="navigateToPage(\'page2\')">Go to Page 2</a>' +
+                    '<a href="javascript:void(0)" onclick="navigateToPage(\'page3\')">Go to Page 3</a>' +
+                    '<br><br>' +
+                    '<button onclick="goBack()">⬅️ Go Back to Home</button>';
+            }
+        }
+    </script>
+
+</body>
+</html>
